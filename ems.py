@@ -1,7 +1,17 @@
 from customtkinter import *
 from PIL import Image
 from tkinter import ttk, messagebox
-import database
+# import mysql_database as database
+import sqlite_database as database
+import sys
+import os
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 # Functions
 def treeview_data():
@@ -117,9 +127,10 @@ window = CTk()
 window.geometry('930x580+100+75') # we fix the window display so added +100+100
 window.resizable(False, False)
 window.title('Employee Management System')
+window.iconbitmap(resource_path("favicon.ico"))
 window.configure(fg_color='#161C30')
 
-logo = CTkImage(Image.open('bg.jpg'), size=(930, 158))
+logo = CTkImage(Image.open(resource_path('bg.jpg')), size=(930, 158))
 logoLabel = CTkLabel(window, image=logo, text='')
 logoLabel.grid(row=0, column=0, columnspan=2)
 

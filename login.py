@@ -1,7 +1,15 @@
 from customtkinter import *
 from PIL import Image
-from tkinter import messagebox
+from tkinter import messagebox, PhotoImage
+import sys
+import os
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def login():
     if usernameEntry.get()=='' or passwordEntry.get()=='':
@@ -16,11 +24,12 @@ def login():
 
 root = CTk()
 root.title("Login")
+root.iconbitmap(resource_path("favicon.ico"))
 root.geometry("930x478")
 root.resizable(False, False)
 
 # Load and display the image
-image = CTkImage(Image.open("cover.jpg"), size=(930, 478))
+image = CTkImage(Image.open(resource_path("cover.jpg")), size=(930, 478))
 imageLabel = CTkLabel(root, image=image, text="")
 imageLabel.place(x=0, y=0)
 

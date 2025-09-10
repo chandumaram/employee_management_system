@@ -4,3 +4,7 @@ env/
 venv/
 .idea/
 .vscode/
+build/
+dist/
+login.spec
+*.db
